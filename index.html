@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ImageSharp vs PngQuant</title>
+<style type="text/css">
+body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+Helvetica, Arial, sans-serif, 
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+img {
+    max-width: 100%;
+    background:  #eee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGElEQVR4AWP8xwABX6D0QAl8gjJ4BlYAAP2qF5G/BQUyAAAAAElFTkSuQmCC);
+    transition: background 0.25s ease-in-out;
+}
+
+img:hover {
+    background: #a4a;
+}
+
+</style>
+
+</head>
+<body>
+<h1>ImageSharp vs PngQuant</h1>
+<p>A comparison between the output quality of <a href="https://github.com/SixLabors/ImageSharp">ImageSharp</a> and <a href="https://pngquant.org/">PngQuant</a>.</p>
+<p></p>
+<table>
+    <thead>
+        <th>Original 73.8kb</th>
+        <th>PngQuant 22.8kb</th>
+        <th>ImageSharp 22.3kb<br> (Lower memory usage, less granular color)</th>
+        <th>ImageSharp-Hi 21.8kb<br> (Higher memory usage, more granular color)</th>
+    </thead>
+    <tr>
+        <td><img src="images/Ducati_side_shadow.png"></td>
+        <td><img src="images/Ducati_side_shadow-fs8.png"></td>
+        <td><img src="images/Ducati_side_shadow-is.png"></td>
+        <td><img src="images/Ducati_side_shadow-is-hi.png"></td>
+    </tr>
+</table>
+
+<h3>Notes</h3>
+<p>PngQuant is the industry standard. It's an incredible piece of work and does it's one task very, very well.<br>
+ImageSharp's quantization is designed to have extremely configurable. 
+You can choose how many colors, what error diffusion algorithm (or none) to use and I'm thinking of adding configuration for the intensity of the quantization pass (higher-lower memory). These examples</p>
+<p>There's trade-off in it's flexibilty though in that we cannot offer some of the specific algorithmic tweaks that PngQuant does (modeified Median Cut algorithm, adaptive variance limits in error diffusion) that allow it to deliver pixel perfect output.</p>
+<p>However, I think we do pretty well!</p>
+</body>
+</html>
